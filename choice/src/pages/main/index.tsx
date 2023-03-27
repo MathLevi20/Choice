@@ -27,14 +27,14 @@ function Question({ question, optionA: OptionA, optionB: OptionB,   }: QuestionP
 
   return (
     <div>
-      <h2 className='px-5 bg-slate-300   grid grid-col-2 w-auto'>{question}</h2>
+      <h2 className='px-5 bg-slate-300   grid grid-col-2 w-auto text-center'>{question}</h2>
       <div className='grid grid-cols-2 text-white '>
-        <div className=' bg-blue-600 cursor-pointer' onClick={() => handleOptionClick('A')}>
+        <div className=' bg-blue-600 cursor-pointer text-center' onClick={() => handleOptionClick('A')}>
 
         <button className='p-10  w-auto bg-blue-600  text-center mx-auto' onClick={() => handleOptionClick('A')}>{OptionA}</button>
 
         </div>
-        <div className='bg-red-600  cursor-pointer' onClick={() => handleOptionClick('B ')}>
+        <div className='bg-red-600  cursor-pointer text-center' onClick={() => handleOptionClick('B ')}>
         <button  className='  bg-red-600 p-10 w-100 text-center mx-auto' onClick={() => handleOptionClick('B')}>{OptionB}</button>
           
 </div>
@@ -52,7 +52,7 @@ function Results({ optionA, optionB, votesA, votesB }: ResultsProps) {
 
   return (
     <div>
-      <p className='text-white '> {optionA}: {votesA} votes ({percentageA}%)</p>
+      <p className='text-white text-center'> {optionA}: {votesA} votes ({percentageA}%)</p>
       <p className='text-white '>{optionB}: {votesB} votes ({percentageB}%)</p>
     </div>
   );
