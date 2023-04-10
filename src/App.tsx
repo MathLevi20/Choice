@@ -1,6 +1,6 @@
 
 import './App.css'
-import { Choice } from './pages/main'
+import  Choice  from './pages/main'
 
 function App() {
 

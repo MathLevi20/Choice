@@ -1,80 +1,94 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-type QuestionProps = {
-  question: string;
-  optionA: string;
-  optionB: string;
-  key:number;
-
-
+type Question = {
+  id: string;
+  option1: string;
+  option2: string;
+  vote1: number;
+  vote2: number;
 };
 
-type ResultsProps = {
-  key:string,
+function Choice() {
+  const [questions, setQuestions] = useState<Question[]>([]);
 
-  optionA: string;
-  optionB: string;
-  votesA: number;
-  votesB: number;
-};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://cronos-api.onrender.com/question');
+        setQuestions(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
-function Question({ question, optionA: OptionA, optionB: OptionB,   }: QuestionProps) {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
+  const handleVote = async (id: string, option: number) => {
+    try {
+      await axios.post('https://cronos-api.onrender.com/vote', { id, option });
+      // Atualiza o estado das questões após o voto ser registrado com sucesso
+      const updatedQuestions = questions.map(question => {
+        if (question.id === id) {
+          if (option === 1) {
+            return { ...question, vote1: question.vote1 + 1 };
+          } else if (option === 2) {
+            return { ...question, vote2: question.vote2 + 1 };
+          }
+        }
+        return question;
+      });
+      setQuestions(updatedQuestions);
+    } catch (error) {
+      console.error('Error voting:', error);
+    }
   };
 
   return (
-    <div>
-      <h2 className='px-5 bg-slate-300   grid grid-col-2 w-auto text-center'>{question}</h2>
-      <div className='grid grid-cols-2 text-white '>
-        <div className=' bg-blue-600 cursor-pointer text-center' onClick={() => handleOptionClick('A')}>
+    <div className="p-10">
+      <h1 className="text-center text-2xl font-bold mb-5">Choice </h1>
+      {questions.map(question => (
+        <div key={question.id} className="bg-gray-100 p-5 mb-5">
+          <div className="grid grid-cols-2 text-center gap-3">
+            <div>
+              <span className="text-gray-700 font-semibold">Option 1:</span>
+              <span className="text-gray-700 ml-1">{question.option1}</span>
+            </div>
+            <div>
+              <span className="text-gray-700 font-semibold">Option 2:</span>
+              <span className="text-gray-700 ml-1">{question.option2}</span>
+            </div>
+            <div>
+              <span className="text-gray-700 font-semibold">Vote 1:</span>
+              <span className="text-gray-700 ml-1">{question.vote1}</span>
+            </div>
 
-        <button className='p-10  w-auto bg-blue-600  text-center mx-auto' onClick={() => handleOptionClick('A')}>{OptionA}</button>
-
-        </div>
-        <div className='bg-red-600  cursor-pointer text-center' onClick={() => handleOptionClick('B ')}>
-        <button  className='  bg-red-600 p-10 w-100 text-center mx-auto' onClick={() => handleOptionClick('B')}>{OptionB}</button>
-          
-</div>
-         </div>
-
-      {selectedOption && <p>You selected {selectedOption}</p>}
+            <div>
+              <span className="text-gray-700 font-semibold">Vote 2:</span>
+              <span className="text-gray-700 ml-1">{question.vote2}</span>
+            </div>
+            <div className="">
+              <button
+                className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+                onClick={() => handleVote(question.id, 1)}
+              >
+                Vote 1
+              </button>
+              </div>
+              <div>
+              <button
+                className="bg-blue-500 text-white font-semibold py-2 px-4 rounded ml-3"
+                onClick={() => handleVote(question.id, 2)}
+              >
+                Vote 2
+              </button>
+              </div>
+            </div>
+          </div>
+      
+      ))}
     </div>
   );
 }
 
-function Results({ optionA, optionB, votesA, votesB }: ResultsProps) {
-  const totalVotes = votesA + votesB;
-  const percentageA = ((votesA / totalVotes) * 100).toFixed(2);
-  const percentageB = ((votesB / totalVotes) * 100).toFixed(2);
-
-  return (
-    <div>
-      <p className='text-white text-center'> {optionA}: {votesA} votes ({percentageA}%)</p>
-      <p className='text-white '>{optionB}: {votesB} votes ({percentageB}%)</p>
-    </div>
-  );
-}
-
-export function Choice() {
-  const [questions, setQuestions] = useState<QuestionProps[]>([]);
-
-  useEffect(() => {
-    fetch('https://cronos-api.onrender.com/question')
-      .then(response => response.json())
-      .then((data: QuestionProps[]) => setQuestions(data));
-  }, []);
-
-  return (
-    <div className='p-10'>
-        <Question
-          key={10}
-          question={"Escolha a questão"}
-          optionA={"Ola mundo"}
-          optionB={"Word "}      />
-
-    </div>
-  );
-}
+export default Choice;
