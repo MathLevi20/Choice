@@ -1,5 +1,7 @@
   import React, { useState, useEffect } from 'react';
   import axios from 'axios';
+import AudioPlayerComponent from '../../components/music';
+import AudioPlayer from '../../components/music';
 
   type Question = {
     id: string;
@@ -28,6 +30,8 @@
     }, [reload]);
     const handleReload = () => {
       setReload(String(Math.random()))
+      setIsVisible(false);
+
     };
 
     const  handleOption = async ( value:number) => {
@@ -75,11 +79,11 @@
                 <span className="text-gray-300 font-semibold">Option 2:</span>
                 <span className="text-gray-100 ml-1">{question.option2}</span>
               </div>
-              <div className={!isVisible ? "hidden" : "block"}>
+              <div className={isVisible ? "block":"hidden" }>
                 <span className="text-gray-300 font-semibold">Vote 1:</span>
                 <span className="text-gray-100 ml-1">{question.vote1}</span>
               </div>
-              <div className={!isVisible ? "hidden" : "block"}>
+              <div className={isVisible ? "block":"hidden" }>
                 <span className="text-gray-300 font-semibold">Vote 2:</span>
                 <span className="text-gray-100 ml-1">{question.vote2}</span>
               </div>
@@ -102,7 +106,7 @@
             </div>
             <div className="flex justify-center mt-6">
               <button
-                className={`${isVisible ? "hidden" : "block"} bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-10 rounded`}
+                className={`${!isVisible ? "block":"hidden"} bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-10 rounded`}
                 onClick={() => handleVote(question.id, count)}
               >
                 Votar
@@ -116,9 +120,11 @@
             </div>
           </div>
         ))}
+  <AudioPlayer/>
       </div>
     );
     
         }  
 
   export default Choice;
+ 
