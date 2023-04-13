@@ -16,13 +16,13 @@ const AudioPlayer: React.FC = () => {
         id: 1,
         title: 'Resonance',
         artist: 'HOME',
-        url: 'public/Home.mp3',
+        url: 'https://ntiumkdcisinslmqjmsm.supabase.co/storage/v1/object/public/CND/HOME.mp3',
     },
     {
         id: 2,
         title: 'Running in the 90\'s',
         artist: 'Max Coveri',
-      url: 'public/Running.mp3',
+      url: 'https://ntiumkdcisinslmqjmsm.supabase.co/storage/v1/object/public/CND/Running.mp3',
     },
     // Adicione mais músicas à lista conforme necessário
   ];
