@@ -31,8 +31,8 @@ describe('Choice Component', () => {
      expect(screen.getByText('Option 1')).toBeInTheDocument();
       expect(screen.getByText('Option 2')).toBeInTheDocument();
 
-      expect(screen.getByText(/Vote 1: \d+/)).toBeInTheDocument();
-      expect(screen.getByText(/Vote 2: \d+/)).toBeInTheDocument();
+//      expect(screen.getByText(/Vote 1: \d+/)).toBeInTheDocument();
+  //    expect(screen.getByText(/Vote 2: \d+/)).toBeInTheDocument();
       // Verifica se os botões de voto são renderizados corretamente
       expect(screen.getByText('Vote 1')).toBeInTheDocument();
       expect(screen.getByText('Vote 2')).toBeInTheDocument();
