@@ -66,14 +66,14 @@ import CommentBox from '../../components/comments';
     };
 
     return (
-      <div className="w-100  bg-gradient-to-r from-purple-800 to-blue-500 ">
+      <div className="w-100 h-full pb-10  p-0 bg-gradient-to-r from-purple-800 to-blue-500 ">
 <img className='mx-auto w-40' src='https://i.imgur.com/prsObzl.png'/> 
-<h1 className="text-center text-3xl font-bold text-white ">Choice</h1>
+<h1 className="text-center pb-3 text-3xl font-bold text-white ">Choice</h1>
 
         {questions.map(question => {
           return (
-            <div key={question.id} className="bg-gray-900 py-9 sm:px-10 m-3 sm:mx-20 sm:py-10  rounded-lg mb-10">
-              <div className="grid grid-cols-2 text-center gap-6">
+            <div key={question.id} className="bg-gray-900 pt-9 sm:px-10 mx-3 sm:mx-20 sm:pt-10  rounded-lg mb-10">
+              <div className="grid grid-cols-2 text-center gap-6 px-3">
                 <div>
                   <span className="text-gray-300 font-semibold">Option 1:</span>
                   <span className="text-gray-100 ml-1">{question.option1}</span>
@@ -92,7 +92,7 @@ import CommentBox from '../../components/comments';
                 </div>
                 <div className="">
                   <button
-                    className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded"
+                    className="bg-purple-600 focus:bg-purple-900 hover:bg-purple-900 text-white font-semibold py-2 px-4 rounded"
                     onClick={() => handleOption(1)}
                   >
                     Select 1
@@ -100,7 +100,7 @@ import CommentBox from '../../components/comments';
                 </div>
                 <div>
                   <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded ml-3"
+                    className="bg-blue-500 hover:bg-blue-600 focus:bg-blue-900 text-white font-semibold py-2 px-4 rounded ml-3"
                     onClick={() => handleOption(2)}
                   >
                     Select 2
@@ -109,7 +109,7 @@ import CommentBox from '../../components/comments';
               </div>
               <div className="flex justify-center mt-6">
                 <button
-                  className={`${!isVisible ? "block" : "hidden"} bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-10 rounded`}
+                  className={`${!isVisible ? "block" : "hidden"} bg-purple-500 hover:bg-purple-600 focus:bg-purple-900  text-white font-semibold py-2 px-10 rounded`}
                   onClick={() => handleVote(question.id, count)}
                 >
                   Votar
