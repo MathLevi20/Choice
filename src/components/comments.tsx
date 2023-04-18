@@ -55,19 +55,19 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <div className="bg-transparent mt-5 flex flex-col items-center justify-center">
-      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+      <div className="max-w-md mx-auto bg-white p-3 m-4 sm:rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-center mb-8">Comentários</h1>
-        <div className="flex mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-4 w-full  mb-4">
           <input
             type="text"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            className="flex-grow rounded-l-md px-4 py-2 border border-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
+            className="flex-grow sm:rounded-l-sm mx-1 px-4 py-2 border col-span-3 border-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
           <button
             onClick={addComment}
-            className="bg-purple-500 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none hover:bg-purple-600 transition duration-200"
+            className="rounded sm:rounded-r-sm my-1 sm:my-0  bg-purple-500 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none hover:bg-purple-600 transition duration-200"
           >
-            Adicionar Comentário
+            Comentar
           </button>
         </div>
         <ul className="text-gray-600">

@@ -66,11 +66,13 @@ import CommentBox from '../../components/comments';
     };
 
     return (
-      <div className="p-10 bg-gradient-to-r from-purple-800 to-blue-500 min-h-screen">
-<img className='mx-auto w-40' src='src/assets/logo.png'/> 
+      <div className="w-100  bg-gradient-to-r from-purple-800 to-blue-500 ">
+<img className='mx-auto w-40' src='https://i.imgur.com/prsObzl.png'/> 
+<h1 className="text-center text-3xl font-bold text-white ">Choice</h1>
+
         {questions.map(question => {
           return (
-            <div key={question.id} className="bg-gray-900 p-8 rounded-lg mb-10">
+            <div key={question.id} className="bg-gray-900 py-9 sm:px-10 m-3 sm:mx-20 sm:py-10  rounded-lg mb-10">
               <div className="grid grid-cols-2 text-center gap-6">
                 <div>
                   <span className="text-gray-300 font-semibold">Option 1:</span>
