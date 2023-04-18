@@ -68,18 +68,18 @@ import CommentBox from '../../components/comments';
     return (
       <div className="w-100 h-full pb-10  p-0 bg-gradient-to-r from-purple-800 to-blue-500 ">
 <img className='mx-auto w-40' src='https://i.imgur.com/prsObzl.png'/> 
-<h1 className="text-center pb-3 text-3xl font-bold text-white ">Choice</h1>
+<h1 className="text-center pb-6 text-3xl font-bold text-white ">Choice</h1>
 
         {questions.map(question => {
           return (
             <div key={question.id} className="bg-gray-900 pt-9 sm:px-10 mx-3 sm:mx-20 sm:pt-10  rounded-lg mb-10">
               <div className="grid grid-cols-2 text-center gap-6 px-3">
                 <div>
-                  <span className="text-gray-300 font-semibold">Option 1:</span>
+                {/*<span className="text-gray-300 font-semibold">Option 1:</span> */}
                   <span className="text-gray-100 ml-1">{question.option1}</span>
                 </div>
                 <div>
-                  <span className="text-gray-300 font-semibold">Option 2:</span>
+                  {/* <span className="text-gray-300 font-semibold">Option 2:</span>*/}
                   <span className="text-gray-100 ml-1">{question.option2}</span>
                 </div>
                 <div className={isVisible ? "block" : "hidden"}>

@@ -62,10 +62,10 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
             type="text"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            className="flex-grow sm:rounded-l-sm mx-1 px-4 py-2 border col-span-3 border-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
+            className="flex-grow rounded  sm:rounded-l-sm mx-1 px-4 py-2 border col-span-3 border-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
           <button
             onClick={addComment}
-            className="rounded sm:rounded-r-sm my-1 sm:my-0  bg-purple-500 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none hover:bg-purple-600 transition duration-200"
+            className="rounded sm:rounded-r-sm my-1 sm:my-0  bg-purple-500 text-white font-bold py-2 px-4  focus:outline-none hover:bg-purple-600 transition duration-200"
           >
             Enviar
           </button>
