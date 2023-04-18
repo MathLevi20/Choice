@@ -18,22 +18,20 @@ import CommentBox from '../../components/comments';
     const [count, setCount] = useState(Number);
     const [isVisible, setIsVisible] = useState(false);
     const [reload, setReload] = useState("");
-
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://cronos-api.onrender.com/question');
+        setQuestions(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get('https://cronos-api.onrender.com/question');
-          setQuestions(response.data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
       fetchData();
     }, [reload]);
     const handleReload = () => {
       setReload(String(Math.random()))
       setIsVisible(false);
-
     };
 
     const  handleOption = async ( value:number) => {
@@ -69,7 +67,7 @@ import CommentBox from '../../components/comments';
 
     return (
       <div className="p-10 bg-gradient-to-r from-purple-800 to-blue-500 min-h-screen">
-        <h1 className="text-center text-3xl font-bold text-white mb-10">Choice</h1>
+<img className='mx-auto w-40' src='src/assets/logo.png'/> 
         {questions.map(question => {
           return (
             <div key={question.id} className="bg-gray-900 p-8 rounded-lg mb-10">

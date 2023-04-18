@@ -10,13 +10,13 @@ interface Comment {
 const CommentBox: React.FC<{ id: string }> = ({ id }) => {
     const [comments, setComments] = useState<Comment[]>([]); // Estado para armazenar os comentários
   const [newComment, setNewComment] = useState(''); // Estado para armazenar o novo comentário
-
-
+  const _id = id
 
   // Chamada para buscar os comentários quando o componente for montado
-  const fetchComments = async (id: string) => {
+  const fetchComments = async () => {
+
     try {
-      const response = await fetch('http://cronos-api.onrender.com/comment/' + id, {
+      const response = await fetch('http://cronos-api.onrender.com/comment/' + _id, {
         method: 'GET',
       });
       if (response.ok) {
@@ -33,7 +33,7 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
 
   // Chamada para buscar os comentários quando o componente for montado
   useEffect(() => {
-    fetchComments("5913c061-800b-416f-971e-3994b948d093"); // Invoca a função fetchComments com o ID desejado
+    fetchComments(); // Invoca a função fetchComments com o ID desejado
   }, [Comment]);
 
   // Função para adicionar um novo comentário
@@ -54,7 +54,7 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen bg-transparent flex flex-col items-center justify-center">
+    <div className="bg-transparent mt-5 flex flex-col items-center justify-center">
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-center mb-8">Comentários</h1>
         <div className="flex mb-4">
