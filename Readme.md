@@ -1,4 +1,4 @@
-#Choice
+# Choice
 
 Descrição:
 Este é um repositório GitHub para um site de escolha de opções de frases. O site foi desenvolvido para fornecer aos usuários uma interface simples e interativa para escolher entre várias opções de frases pré-definidas. O site permite aos usuários visualizar as opções de frases disponíveis, selecionar suas opções preferidas e ver o resultado final gerado com base em suas escolhas.
