@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import config from '../utils/config';
 
+
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: config.apiUrl,
+});
 // Interface para o tipo de comentário
 interface Comment {
   id: string;
@@ -15,7 +20,7 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
   // Chamada para buscar os comentários quando o componente for montado
   const fetchComments = async () => {
     try {
-      const response = await axios.get(`http://cronos-api.onrender.com/comment/${_id}`);
+      const response = await axiosInstance.get(`/comment/${_id}`);
   
       if (response.status === 200) {
         const data = response.data;
