@@ -14,13 +14,11 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
 
   // Chamada para buscar os comentários quando o componente for montado
   const fetchComments = async () => {
-
     try {
-      const response = await fetch('http://cronos-api.onrender.com/comment/' + _id, {
-        method: 'GET',
-      });
-      if (response.ok) {
-        const data = await response.json();
+      const response = await axios.get(`http://cronos-api.onrender.com/comment/${_id}`);
+  
+      if (response.status === 200) {
+        const data = response.data;
         console.log(data);
         setComments(data);
       } else {
@@ -30,6 +28,7 @@ const CommentBox: React.FC<{ id: string }> = ({ id }) => {
       console.error('Erro ao buscar os comentários:', error);
     }
   };
+  
 
   // Chamada para buscar os comentários quando o componente for montado
   useEffect(() => {

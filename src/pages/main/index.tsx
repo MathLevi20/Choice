@@ -1,8 +1,9 @@
   import React, { useState, useEffect } from 'react';
-  import axios from 'axios';
+  import axios, { AxiosInstance } from 'axios';
 import AudioPlayerComponent from '../../components/music';
 import AudioPlayer from '../../components/music';
 import CommentBox from '../../components/comments';
+import config from '../../utils/config'
 
   type Question = {
     id: string;
@@ -12,6 +13,9 @@ import CommentBox from '../../components/comments';
     vote2: number;
   };
 
+  const axiosInstance: AxiosInstance = axios.create({
+    baseURL: config.apiUrl,
+  });
   
   function Choice() {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -20,7 +24,7 @@ import CommentBox from '../../components/comments';
     const [reload, setReload] = useState("");
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://cronos-api.onrender.com/question');
+        const response = await axiosInstance.get('/question');
         setQuestions(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -43,7 +47,7 @@ import CommentBox from '../../components/comments';
     const handleVote = async (id: string, option: number) => {
       console.log(id,option)
       try {
-        await axios.patch('https://cronos-api.onrender.com/vote', { id, option });
+        await axiosInstance.patch('/vote', { id, option });
         // Atualiza o estado das questões após o voto ser registrado com sucesso
         const updatedQuestions = questions.map(question => {
           if (question.id === id) {
